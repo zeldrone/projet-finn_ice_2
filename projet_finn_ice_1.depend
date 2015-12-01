@@ -1,0 +1,82 @@
+# depslib dependency file v1.0
+1448297158 source:c:\users\baptiste\documents\fichiers ece\code blocks\brouillon\deplacement_et_test_die.c
+	<allegro.h>
+	<winalleg.h>
+	"header_allegro.h"
+	"header.h"
+
+1448229037 c:\users\baptiste\documents\fichiers ece\code blocks\brouillon\header_allegro.h
+	<allegro.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
+1448231024 c:\users\baptiste\documents\fichiers ece\code blocks\brouillon\header.h
+	<allegro.h>
+	<winalleg.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+
+1448298313 source:c:\users\baptiste\documents\fichiers ece\code blocks\brouillon\jeu_normal.c
+	"header.h"
+	"header_allegro.h"
+	<winalleg.h>
+
+1448270939 source:c:\users\baptiste\documents\fichiers ece\code blocks\brouillon\level_editor.c
+	<allegro.h>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"header.h"
+	"header_allegro.h"
+	<allegro.h>
+
+1448295768 source:c:\users\baptiste\documents\fichiers ece\code blocks\brouillon\main1.c
+	<allegro.h>
+	<winalleg.h>
+	"header.h"
+	"header_allegro.h"
+
+1448882385 source:c:\users\baptiste\documents\fichiers ece\code blocks\projet finn_ice_1\deplacement_et_test_die.c
+	<allegro.h>
+	<winalleg.h>
+	"header_allegro.h"
+	"header.h"
+
+1448881704 c:\users\baptiste\documents\fichiers ece\code blocks\projet finn_ice_1\header_allegro.h
+	<allegro.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
+1448879999 c:\users\baptiste\documents\fichiers ece\code blocks\projet finn_ice_1\header.h
+	<allegro.h>
+	<winalleg.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+
+1448882236 source:c:\users\baptiste\documents\fichiers ece\code blocks\projet finn_ice_1\jeu_normal.c
+	"header.h"
+	"header_allegro.h"
+	<winalleg.h>
+
+1448881955 source:c:\users\baptiste\documents\fichiers ece\code blocks\projet finn_ice_1\level_editor.c
+	<allegro.h>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"header.h"
+	"header_allegro.h"
+	<allegro.h>
+
+1448730198 source:c:\users\baptiste\documents\fichiers ece\code blocks\projet finn_ice_1\main1.c
+	<allegro.h>
+	<winalleg.h>
+	"header.h"
+	"header_allegro.h"
+
