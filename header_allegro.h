@@ -18,3 +18,4 @@ void init_mode_graphique(int mode_graphique,BITMAP* affiche2[11]);
 void level_editor();
 void menu(BITMAP* buffer, BITMAP* affiche[15][19], char mot[50]);
 void triple_buffer(BITMAP* affiche[15][19], int* page);
+int objets_graphique(int buffer, int* potion, int direction_x, int direction_y,BITMAP* affiche[15][19], char tab[15][19], int coord_case_suiv[2],int mode_graphique, int score_general, int* score, BITMAP* affiche2[NBSPRITE]);
