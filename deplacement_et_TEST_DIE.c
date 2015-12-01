@@ -2,101 +2,9 @@
 #include <winalleg.h>
 #include "header_allegro.h"
 #include "header.h"
-void fin_de_niveau(int niveau)
+int objets_graphique(int buffer, int* potion, int direction_x, int direction_y,BITMAP* affiche[15][19], char tab[15][19], int coord_case_suiv[2],int mode_graphique, int score_general, int* score, BITMAP* affiche2[NBSPRITE])
 {
-    FILE* sauvegarde;
-    sauvegarde= fopen("niveausauvegarde.txt", "w");
-    fprintf(sauvegarde, "%d", niveau);
-    exit(0);
-}
-int deplacement_graphique(char tab[15][19], int* score, int* clef, int precedent, int* potion, BITMAP* affiche[15][19], BITMAP* affiche2[NBSPRITE], int mode_graphique, int score_general, int niveau)
-{
-
-    clear_keybuf();
-    int i,j,x,y;
-    int z=1;
-    int direction_x=0, direction_y=0;
-    int test=1, buffer=precedent, buffer1=-1, buffer2;
-    int coord_case_suiv[2]= {0};
-    for(i=0; i<15; i++)
-    {
-        for(j=0; j<19; j++)
-        {
-            if (tab[i][j]==2)
-            {
-                x=j;
-                y=i;
-            }
-        }
-    }
-    i=0;
-    j=0;
-    if(!key[KEY_W])
-    {
-        if(!key[KEY_S])
-        {
-            if(!key[KEY_A]) //allegro gère le clavier en qwerty
-            {
-                if(!key[KEY_D])
-                {
-                    if(!key[KEY_X]) test=0;
-                    else fin_de_niveau(niveau);
-                }
-                else
-                {
-                    coord_case_suiv[0]=x+1;
-                    coord_case_suiv[1]=y;
-                    direction_x=1;
-                }
-            }
-            else
-            {
-                coord_case_suiv[0]=x-1;
-                coord_case_suiv[1]=y;
-                direction_x=-1;
-            }
-        }
-        else
-        {
-            coord_case_suiv[0]=x;
-            coord_case_suiv[1]=y+1;
-            direction_y=1;
-        }
-    }
-    else
-    {
-        coord_case_suiv[0]=x;
-        coord_case_suiv[1]=y-1;
-        direction_y=-1;
-    }
-    if (test)
-    {
-        if(*potion>0)
-        {
-            *potion=*potion-1;
-            z=0;
-        }
-        if (tab[coord_case_suiv[1]][coord_case_suiv[0]]>=0)
-        {
-            buffer=tab[coord_case_suiv[1]][coord_case_suiv[0]];
-            tab[coord_case_suiv[1]][coord_case_suiv[0]]=tab[y][x];
-            tab[y][x]=precedent-z;
-            (*score)+=z;
-        }
-        if (buffer==100)
-        {
-            (*clef)++;
-            return 0;
-        }
-        if((tab[coord_case_suiv[1]][coord_case_suiv[0]]==-50)&&(*clef>0))
-        {
-            (*clef)--;
-            tab[coord_case_suiv[1]][coord_case_suiv[0]]=tab[y][x];
-            tab[y][x]=precedent-z;
-            (*score)+=z;
-            return 0;
-        }
-        switch (buffer)
+    switch (buffer)
         {
 
         case 4:
@@ -159,6 +67,103 @@ int deplacement_graphique(char tab[15][19], int* score, int* clef, int precedent
                 }
             }
         }
+    return buffer;
+}
+void fin_de_niveau(int niveau)
+{
+    FILE* sauvegarde;
+    sauvegarde= fopen("niveausauvegarde.txt", "w");
+    fprintf(sauvegarde, "%d", niveau);
+    exit(0);
+}
+int deplacement_graphique(char tab[15][19], int* score, int* clef, int precedent, int* potion, BITMAP* affiche[15][19], BITMAP* affiche2[NBSPRITE], int mode_graphique, int score_general, int niveau)
+{
+
+    clear_keybuf();
+    int i,j,x,y;
+    int z=1;
+    int direction_x=0, direction_y=0;
+    int test=1, buffer=precedent, buffer1=-1, buffer2;
+    int coord_case_suiv[2]= {0};
+    for(i=0; i<15; i++)
+    {
+        for(j=0; j<19; j++)
+        {
+            if (tab[i][j]==2)
+            {
+                x=j;
+                y=i;
+            }
+        }
+    }
+    i=0;
+    j=0;
+    if(!key[KEY_W])
+    {
+        if(!key[KEY_S])
+        {
+            if(!key[KEY_A]) //allegro gÃ¨re le clavier en qwerty
+            {
+                if(!key[KEY_D])
+                {
+                    if(!key[KEY_X]) test=0;
+                    else fin_de_niveau(niveau);
+                }
+                else
+                {
+                    coord_case_suiv[0]=x+1;
+                    coord_case_suiv[1]=y;
+                    direction_x=1;
+                }
+            }
+            else
+            {
+                coord_case_suiv[0]=x-1;
+                coord_case_suiv[1]=y;
+                direction_x=-1;
+            }
+        }
+        else
+        {
+            coord_case_suiv[0]=x;
+            coord_case_suiv[1]=y+1;
+            direction_y=1;
+        }
+    }
+    else
+    {
+        coord_case_suiv[0]=x;
+        coord_case_suiv[1]=y-1;
+        direction_y=-1;
+    }
+    if (test)
+    {
+        if(*potion>0)
+        {
+            *potion=*potion-1;
+            z=0;
+        }
+        if (tab[coord_case_suiv[1]][coord_case_suiv[0]]>=0)
+        {
+            buffer=tab[coord_case_suiv[1]][coord_case_suiv[0]];
+            tab[coord_case_suiv[1]][coord_case_suiv[0]]=tab[y][x];
+            tab[y][x]=precedent-z;
+            (*score)+=z;
+        }
+        if (buffer==100)
+        {
+            (*clef)++;
+            return 0;
+        }
+        if((tab[coord_case_suiv[1]][coord_case_suiv[0]]==-50)&&(*clef>0))
+        {
+            (*clef)--;
+            tab[coord_case_suiv[1]][coord_case_suiv[0]]=tab[y][x];
+            tab[y][x]=precedent-z;
+            (*score)+=z;
+            return 0;
+        }
+        objets_graphique(buffer, potion, direction_x, direction_y, affiche, tab, coord_case_suiv,mode_graphique,score_general,score, affiche2);
 
         return buffer;
     }
@@ -462,16 +467,16 @@ int jeu_graphique(int niveau, int* score, int mode_graphique, char mot[50])
             }
             printf ("\tRegles :\n");
             printf ("1) Le but du jeu est d'atteindre la sortie. \n");
-            printf ("2) Utilisez les touches 2,4,6,8 du pavé ou les touches z,q,s,d pour vous deplacer. \n");
+            printf ("2) Utilisez les touches 2,4,6,8 du pavÃ© ou les touches z,q,s,d pour vous deplacer. \n");
             printf ("3) Lorsque vous passez sur un bloc de glace, il disparait et laisse place a de l'eau. \n");
             printf ("4) Vous ne pouvez pas passer sur de l'eau, donc si vous vous entourez d'eau, vous perdez \n");
             printf ("5) Certains niveaux contiennent des doubles glaces : lorsque vous passez dessus, ils deviennent des blocs de glace simple. \n");
             printf ("6) Certains niveaux contiennent des bonus utilisables ! \n");
             printf ("7) Comme par exemple une potion de legerete, pour passer sans casser la glace. \n");
-            printf ("8) Les potions %c vous permettent de passer sans détruire la glace pendant 6 mouvements! \n", 244);
+            printf ("8) Les potions %c vous permettent de passer sans dÃ©truire la glace pendant 6 mouvements! \n", 244);
             printf ("10) Certains niveaux contiennent des serrures ! \n");
             printf ("11) Une cle sera disponible dans le niveau pour ouvrir la serrure et terminer le niveau. \n");
-            printf ("9) Les rochers %c sont mobiles et détruisent tout sur leur passage, attention aux clef ! \n", 246);
+            printf ("9) Les rochers %c sont mobiles et dÃ©truisent tout sur leur passage, attention aux clef ! \n", 246);
             printf ("12) S'amuser !\n");
 
         }
